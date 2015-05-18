@@ -42,7 +42,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self commonInitialization];
+        [self commonInitialization:nil];
     }
     return self;
 }
@@ -50,7 +50,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self commonInitialization];
+        [self commonInitialization:nil];
     }
     return self;
 }
@@ -61,13 +61,16 @@
 
 -(void)setTintColor:(UIColor *)tintColor{
     self.tintColor=tintColor;
-    [self commonInitialization];
+    [self commonInitialization:tintColor];
 }
 
-- (void)commonInitialization {
+- (void)commonInitialization:(UIColor *)tintColor {
     // Setup defaults
     //add tintColor by hqman 2015 5 19
-    self.tintColor=[UIColor blackColor];
+    if (tintColor) {
+        tintColor=[UIColor blackColor];
+    }
+    
     [self setBackgroundColor:[UIColor clearColor]];
     
     _title = @"";
@@ -77,13 +80,13 @@
         
         _unselectedTitleAttributes = @{
                                        NSFontAttributeName: [UIFont systemFontOfSize:12],
-                                       NSForegroundColorAttributeName: self.tintColor,
+                                       NSForegroundColorAttributeName: tintColor,
                                        };
     } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
         _unselectedTitleAttributes = @{
                                        UITextAttributeFont: [UIFont systemFontOfSize:12],
-                                       UITextAttributeTextColor: self.tintColor,
+                                       UITextAttributeTextColor: tintColor,
                                        };
 #endif
     }

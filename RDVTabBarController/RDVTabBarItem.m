@@ -61,6 +61,13 @@
 
 - (void)commonInitialization {
     // Setup defaults
+    //add tintColor by hqman 2015 5 19
+    UIColor *tintColor;
+    if(_tintColor){
+        tintColor=_tintColor;
+    }else{
+        tintColor=[UIColor blackColor];
+    }
     
     [self setBackgroundColor:[UIColor clearColor]];
     
@@ -68,15 +75,16 @@
     _titlePositionAdjustment = UIOffsetZero;
     
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
+        
         _unselectedTitleAttributes = @{
                                        NSFontAttributeName: [UIFont systemFontOfSize:12],
-                                       NSForegroundColorAttributeName: [UIColor blackColor],
+                                       NSForegroundColorAttributeName: tintColor,
                                        };
     } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
         _unselectedTitleAttributes = @{
                                        UITextAttributeFont: [UIFont systemFontOfSize:12],
-                                       UITextAttributeTextColor: [UIColor blackColor],
+                                       UITextAttributeTextColor: tintColor,
                                        };
 #endif
     }

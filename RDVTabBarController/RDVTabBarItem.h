@@ -81,6 +81,8 @@
 
 #pragma mark - Background configuration
 
+@property(nonatomic, retain) UIColor *tintColor UI_APPEARANCE_SELECTOR;
+
 /**
  * The background image used for tab bar item's selected state.
  */

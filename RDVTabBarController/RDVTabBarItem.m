@@ -62,20 +62,20 @@
 - (id)initWithTintColor: (UIColor *)color{
     self=[self initWithFrame:CGRectZero];
     if(self){
-         self.tintColor=color;
+        self.tintColor=color;
     }
     return self;
 }
 
--(void)setTintColor:(UIColor *)tintColor{
-    self.tintColor=tintColor;
-    [self commonInitialization:tintColor];
-}
+//-(void)setTintColor:(UIColor *)tintColor{
+//    self.tintColor=tintColor;
+//    [self commonInitialization:tintColor];
+//}
 
 - (void)commonInitialization:(UIColor *)tintColor {
     // Setup defaults
     //add tintColor by hqman 2015 5 19
-    if (tintColor) {
+    if (!tintColor) {
         tintColor=[UIColor blackColor];
     }
     
@@ -116,6 +116,7 @@
     CGFloat imageStartingY = 0.0f;
     
     if ([self isSelected]) {
+        _selectedImage=[_selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         image = [self selectedImage];
         backgroundImage = [self selectedBackgroundImage];
         titleAttributes = [self selectedTitleAttributes];
@@ -124,6 +125,7 @@
             titleAttributes = [self unselectedTitleAttributes];
         }
     } else {
+        _unselectedImage=[_unselectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         image = [self unselectedImage];
         backgroundImage = [self unselectedBackgroundImage];
         titleAttributes = [self unselectedTitleAttributes];
@@ -148,9 +150,9 @@
         
         if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
             titleSize = [_title boundingRectWithSize:CGSizeMake(frameSize.width, 20)
-                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                 attributes:titleAttributes
-                                                    context:nil].size;
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:titleAttributes
+                                             context:nil].size;
             
             imageStartingY = roundf((frameSize.height - imageSize.height - titleSize.height) / 2);
             
@@ -249,7 +251,7 @@
             [[self badgeValue] drawInRect:CGRectMake(CGRectGetMinX(badgeBackgroundFrame) + textOffset,
                                                      CGRectGetMinY(badgeBackgroundFrame) + textOffset,
                                                      badgeSize.width, badgeSize.height)
-                withAttributes:badgeTextAttributes];
+                           withAttributes:badgeTextAttributes];
         } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
             [[self badgeValue] drawInRect:CGRectMake(CGRectGetMinX(badgeBackgroundFrame) + textOffset,

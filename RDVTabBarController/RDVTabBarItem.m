@@ -59,16 +59,15 @@
     return [self initWithFrame:CGRectZero];
 }
 
+-(void)setTintColor:(UIColor *)tintColor{
+    self.tintColor=tintColor;
+    [self commonInitialization];
+}
+
 - (void)commonInitialization {
     // Setup defaults
     //add tintColor by hqman 2015 5 19
-    UIColor *tintColor;
-    if(_tintColor){
-        tintColor=_tintColor;
-    }else{
-        tintColor=[UIColor blackColor];
-    }
-    
+    self.tintColor=[UIColor blackColor];
     [self setBackgroundColor:[UIColor clearColor]];
     
     _title = @"";
@@ -78,13 +77,13 @@
         
         _unselectedTitleAttributes = @{
                                        NSFontAttributeName: [UIFont systemFontOfSize:12],
-                                       NSForegroundColorAttributeName: tintColor,
+                                       NSForegroundColorAttributeName: self.tintColor,
                                        };
     } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
         _unselectedTitleAttributes = @{
                                        UITextAttributeFont: [UIFont systemFontOfSize:12],
-                                       UITextAttributeTextColor: tintColor,
+                                       UITextAttributeTextColor: self.tintColor,
                                        };
 #endif
     }

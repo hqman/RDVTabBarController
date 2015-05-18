@@ -56,7 +56,15 @@
 }
 
 - (id)init {
-    return [self initWithFrame:CGRectZero];
+    return [self initWithTintColor:nil];
+}
+
+- (id)initWithTintColor: (UIColor *)color{
+    self=[self initWithFrame:CGRectZero];
+    if(self){
+         self.tintColor=color;
+    }
+    return self;
 }
 
 -(void)setTintColor:(UIColor *)tintColor{

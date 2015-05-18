@@ -122,22 +122,25 @@
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
-- (void)setViewControllers:(NSArray *)viewControllers {
-    if (_viewControllers && _viewControllers.count) {
+
+- (void)setViewControllers:(NSArray *)viewControllers tintColor:(UIColor *)color{
+    
+    
+         if (_viewControllers && _viewControllers.count) {
         for (UIViewController *viewController in _viewControllers) {
             [viewController willMoveToParentViewController:nil];
             [viewController.view removeFromSuperview];
             [viewController removeFromParentViewController];
         }
     }
-
+    
     if (viewControllers && [viewControllers isKindOfClass:[NSArray class]]) {
         _viewControllers = [viewControllers copy];
         
         NSMutableArray *tabBarItems = [[NSMutableArray alloc] init];
         
         for (UIViewController *viewController in viewControllers) {
-            RDVTabBarItem *tabBarItem = [[RDVTabBarItem alloc] init];
+            RDVTabBarItem *tabBarItem = [[RDVTabBarItem alloc] initWithTintColor:color];
             [tabBarItem setTitle:viewController.title];
             [tabBarItems addObject:tabBarItem];
             [viewController rdv_setTabBarController:self];
@@ -151,7 +154,12 @@
         
         _viewControllers = nil;
     }
+
 }
+
+- (void)setViewControllers:(NSArray *)viewControllers {
+    [self setViewControllers:viewControllers tintColor:[UIColor blackColor]];
+    }
 
 - (NSInteger)indexForViewController:(UIViewController *)viewController {
     UIViewController *searchedController = viewController;

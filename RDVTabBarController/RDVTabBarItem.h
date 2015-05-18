@@ -25,6 +25,8 @@
 
 @interface RDVTabBarItem : UIControl
 
+- (id)initWithTintColor: (UIColor *)color;
+
 /**
  * itemHeight is an optional property. When set it is used instead of tabBar's height.
  */

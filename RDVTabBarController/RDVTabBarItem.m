@@ -39,6 +39,8 @@
 
 @implementation RDVTabBarItem
 
+
+
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -60,9 +62,10 @@
 }
 
 - (id)initWithTintColor: (UIColor *)color{
-    self=[self initWithFrame:CGRectZero];
-    if(self){
-        self.tintColor=color;
+    
+     self = [super initWithFrame: CGRectZero];
+        if(self){
+         [self commonInitialization:color];
     }
     return self;
 }
@@ -76,8 +79,9 @@
     // Setup defaults
     //add tintColor by hqman 2015 5 19
     if (!tintColor) {
-        tintColor=[UIColor blackColor];
+        tintColor=[UIColor redColor];
     }
+    
     
     [self setBackgroundColor:[UIColor clearColor]];
     
@@ -116,7 +120,7 @@
     CGFloat imageStartingY = 0.0f;
     
     if ([self isSelected]) {
-        _selectedImage=[_selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        //self.selectedImage=[self.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         image = [self selectedImage];
         backgroundImage = [self selectedBackgroundImage];
         titleAttributes = [self selectedTitleAttributes];
@@ -125,7 +129,7 @@
             titleAttributes = [self unselectedTitleAttributes];
         }
     } else {
-        _unselectedImage=[_unselectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        //_unselectedImage=[_unselectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         image = [self unselectedImage];
         backgroundImage = [self unselectedBackgroundImage];
         titleAttributes = [self unselectedTitleAttributes];

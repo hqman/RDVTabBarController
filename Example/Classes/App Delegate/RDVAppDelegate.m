@@ -60,13 +60,15 @@
     
     RDVTabBarController *tabBarController = [[RDVTabBarController alloc] init];
     [tabBarController setViewControllers:@[firstNavigationController, secondNavigationController,
-                                           thirdNavigationController]];
+                                           thirdNavigationController] tintColor:[UIColor redColor]];
     self.viewController = tabBarController;
     
     [self customizeTabBarForController:tabBarController];
 }
 
 - (void)customizeTabBarForController:(RDVTabBarController *)tabBarController {
+    
+    
     UIImage *finishedImage = [UIImage imageNamed:@"tabbar_selected_background"];
     UIImage *unfinishedImage = [UIImage imageNamed:@"tabbar_normal_background"];
     NSArray *tabBarItemImages = @[@"first", @"second", @"third"];
@@ -77,7 +79,15 @@
         UIImage *selectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_selected",
                                                       [tabBarItemImages objectAtIndex:index]]];
         UIImage *unselectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_normal",
+         
+                                                        
                                                         [tabBarItemImages objectAtIndex:index]]];
+        [[RDVTabBarItem appearance] setTintColor:[UIColor redColor]];
+        
+        
+        [[UITabBar  appearance] setTintColor:[UIColor redColor]];
+        selectedimage=[selectedimage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        unselectedimage=[unselectedimage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [item setFinishedSelectedImage:selectedimage withFinishedUnselectedImage:unselectedimage];
         
         index++;

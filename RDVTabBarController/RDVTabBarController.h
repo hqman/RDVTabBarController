@@ -81,6 +81,8 @@
 
 @interface UIViewController (RDVTabBarControllerItem)
 
+- (void)setViewControllers:(NSArray *)viewControllers tintColor:(UIColor *)color;
+
 /**
  * The tab bar item that represents the view controller when added to a tab bar controller.
  */

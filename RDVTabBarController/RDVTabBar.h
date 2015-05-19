@@ -41,6 +41,9 @@
 
 @interface RDVTabBar : UIView
 
+@property(nonatomic, strong) UIColor *tintColor UI_APPEARANCE_SELECTOR;
+
+
 /**
  * The tab bar’s delegate object.
  */

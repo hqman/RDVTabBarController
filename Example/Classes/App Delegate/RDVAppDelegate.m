@@ -82,7 +82,7 @@
          
                                                         
                                                         [tabBarItemImages objectAtIndex:index]]];
-        [[RDVTabBarItem appearance] setTintColor:[UIColor redColor]];
+        [[RDVTabBar appearance] setTintColor:[UIColor redColor]];
         
         
         [[UITabBar  appearance] setTintColor:[UIColor redColor]];
